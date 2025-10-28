@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Supermercado</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--primary);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            background: var(--dark);
+            text-align: center;
+        }
+        
+        .sidebar-menu {
+            padding: 15px 0;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: var(--secondary);
+        }
+        
+        .sidebar-menu i {
+            margin-right: 10px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* Forms */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .actions button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        /* Login Page */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--primary);
+        }
+        
+        .login-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Promoção */
+        .promocao-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .promocao-sim {
+            background: var(--success);
+            color: white;
+        }
+        
+        .promocao-nao {
+            background: #ddd;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+            }
+            
+            .sidebar-menu a {
+                white-space: nowrap;
+            }
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--secondary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Página de Login -->
+    <div id="loginPage" class="login-container">
+        <div class="login-form">
+            <h2>Painel Administrativo</h2>
+            <div class="form-group">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha">
+            </div>
+            <button class="btn-primary" style="width: 100%;" onclick="fazerLogin()">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Painel Administrativo -->
+    <div id="adminPanel" class="container" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Supermercado</h2>
+                <p>Painel Administrativo</p>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="active" onclick="mostrarTab('produtos')"><i>📦</i> Gerenciar Produtos</a>
+                <a href="#" onclick="mostrarTab('cadastro')"><i>➕</i> Cadastrar Produto</a>
+                <a href="#" onclick="sair()"><i>🚪</i> Sair</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Controle de Produtos</h1>
+                <div>
+                    <span id="usuarioLogado"></span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" onclick="mostrarTab('produtos')">Lista de Produtos</div>
+                <div class="tab" onclick="mostrarTab('cadastro')">Cadastrar Produto</div>
+            </div>
+
+            <!-- Conteúdo das Tabs -->
+            <div id="produtos" class="tab-content active">
+                <div class="card">
+                    <h2>Produtos Cadastrados</h2>
+                    <div class="form-group">
+                        <input type="text" id="buscarProduto" placeholder="Buscar produto..." onkeyup="filtrarProdutos()">
+                    </div>
+                    <table id="tabelaProdutos">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descrição</th>
+                                <th>Preço Custo</th>
+                                <th>Preço Venda</th>
+                                <th>Promoção</th>
+                                <th>Valor Promoção</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpoTabela">
+                            <!-- Produtos serão inseridos aqui via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="cadastro" class="tab-content">
+                <div class="card">
+                    <h2 id="tituloForm">Cadastrar Produto</h2>
+                    <form id="formProduto">
+                        <input type="hidden" id="produtoId">
+                        <div class="form-group">
+                            <label for="descricao">Descrição do Produto</label>
+                            <input type="text" id="descricao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="precoCusto">Preço de Custo (R$)</label>
+                            <input type="number" id="precoCusto" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="precoVenda">Preço de Venda (R$)</label>
+                            <input type="number" id="precoVenda" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="promocao">Em Promoção?</label>
+                            <select id="promocao" onchange="togglePromocao()">
+                                <option value="false">Não</option>
+                                <option value="true">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="grupoValorPromocao" style="display: none;">
+                            <label for="valorPromocao">Valor Promoção (R$)</label>
+                            <input type="number" id="valorPromocao" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn-primary" onclick="salvarProduto()" id="btnSalvar">Cadastrar Produto</button>
+                            <button type="button" class="btn-warning" onclick="limparFormulario()" id="btnCancelar" style="display: none;">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados iniciais (simulando um banco de dados)
+        let usuarios = [
+            { usuario: "admin", senha: "admin123" },
+            { usuario: "gerente", senha: "gerente123" }
+        ];
+
+        let produtos = [
+            { id: 1, descricao: "Arroz 5kg", precoCusto: 12.50, precoVenda: 18.90, promocao: false, valorPromocao: 0 },
+            { id: 2, descricao: "Feijão 1kg", precoCusto: 5.80, precoVenda: 8.50, promocao: true, valorPromocao: 7.20 },
+            { id: 3, descricao: "Açúcar 1kg", precoCusto: 3.20, precoVenda: 4.50, promocao: false, valorPromocao: 0 },
+            { id: 4, descricao: "Óleo de Soja 900ml", precoCusto: 4.50, precoVenda: 6.90, promocao: true, valorPromocao: 5.99 }
+        ];
+
+        let produtoEditando = null;
+        let usuarioLogado = null;
+
+        // Função de login
+        function fazerLogin() {
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            
+            const usuarioValido = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+            
+            if (usuarioValido) {
+                usuarioLogado = usuario;
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'flex';
+                document.getElementById('usuarioLogado').textContent = `Usuário: ${usuario}`;
+                carregarProdutos();
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+        }
+
+        // Função de logout
+        function sair() {
+            usuarioLogado = null;
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('usuario').value = '';
+            document.getElementById('senha').value = '';
+        }
+
+        // Alternar entre as abas
+        function mostrarTab(tabId) {
+            // Esconder todas as tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostrar a tab selecionada
+            document.getElementById(tabId).classList.add('active');
+            
+            // Atualizar tabs ativas
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Atualizar menu lateral
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (tabId === 'produtos') {
+                document.querySelectorAll('.tab')[0].classList.add('active');
+                document.querySelectorAll('.sidebar-menu a')[0].classList.add('active');
+            } else if (tabId === 'cadastro') {
+                document.querySelectorAll('.tab')[1].classList.add('active');
+                document.querySelectorAll('.sidebar-menu a')[1].classList.add('active');
+            }
+        }
+
+        // Carregar produtos na tabela
+        function carregarProdutos() {
+            const corpoTabela = document.getElementById('corpoTabela');
+            corpoTabela.innerHTML = '';
+            
+            produtos.forEach(produto => {
+                const tr = document.createElement('tr');
+                
+                const precoVenda = produto.promocao ? produto.valorPromocao : produto.precoVenda;
+                const classePromocao = produto.promocao ? 'promocao-sim' : 'promocao-nao';
+                const textoPromocao = produto.promocao ? 'Sim' : 'Não';
+                
+                tr.innerHTML = `
+                    <td>${produto.id}</td>
+                    <td>${produto.descricao}</td>
+                    <td>R$ ${produto.precoCusto.toFixed(2)}</td>
+                    <td>R$ ${precoVenda.toFixed(2)}</td>
+                    <td><span class="promocao-badge ${classePromocao}">${textoPromocao}</span></td>
+                    <td>${produto.promocao ? 'R$ ' + produto.valorPromocao.toFixed(2) : '-'}</td>
+                    <td class="actions">
+                        <button class="btn-warning" onclick="editarProduto(${produto.id})">Editar</button>
+                        <button class="btn-danger" onclick="excluirProduto(${produto.id})">Excluir</button>
+                    </td>
+                `;
+                
+                corpoTabela.appendChild(tr);
+            });
+        }
+
+        // Filtrar produtos
+        function filtrarProdutos() {
+            const termo = document.getElementById('buscarProduto').value.toLowerCase();
+            const linhas = document.querySelectorAll('#corpoTabela tr');
+            
+            linhas.forEach(linha => {
+                const descricao = linha.cells[1].textContent.toLowerCase();
+                if (descricao.includes(termo)) {
+                    linha.style.display = '';
+                } else {
+                    linha.style.display = 'none';
+                }
+            });
+        }
+
+        // Mostrar/ocultar campo de valor de promoção
+        function togglePromocao() {
+            const promocao = document.getElementById('promocao').value === 'true';
+            document.getElementById('grupoValorPromocao').style.display = promocao ? 'block' : 'none';
+        }
+
+        // Salvar produto (criar ou editar)
+        function salvarProduto() {
+            const id = document.getElementById('produtoId').value;
+            const descricao = document.getElementById('descricao').value;
+            const precoCusto = parseFloat(document.getElementById('precoCusto').value);
+            const precoVenda = parseFloat(document.getElementById('precoVenda').value);
+            const promocao = document.getElementById('promocao').value === 'true';
+            const valorPromocao = promocao ? parseFloat(document.getElementById('valorPromocao').value) : 0;
+            
+            if (!descricao || isNaN(precoCusto) || isNaN(precoVenda)) {
+                alert('Preencha todos os campos obrigatórios!');
+                return;
+            }
+            
+            if (promocao && (isNaN(valorPromocao) || valorPromocao <= 0)) {
+                alert('Informe um valor de promoção válido!');
+                return;
+            }
+            
+            if (id) {
+                // Editar produto existente
+                const index = produtos.findIndex(p => p.id === parseInt(id));
+                if (index !== -1) {
+                    produtos[index] = {
+                        id: parseInt(id),
+                        descricao,
+                        precoCusto,
+                        precoVenda,
+                        promocao,
+                        valorPromocao
+                    };
+                }
+            } else {
+                // Criar novo produto
+                const novoId = produtos.length > 0 ? Math.max(...produtos.map(p => p.id)) + 1 : 1;
+                produtos.push({
+                    id: novoId,
+                    descricao,
+                    precoCusto,
+                    precoVenda,
+                    promocao,
+                    valorPromocao
+                });
+            }
+            
+            carregarProdutos();
+            limparFormulario();
+            mostrarTab('produtos');
+            alert('Produto salvo com sucesso!');
+        }
+
+        // Editar produto
+        function editarProduto(id) {
+            const produto = produtos.find(p => p.id === id);
+            if (produto) {
+                document.getElementById('produtoId').value = produto.id;
+                document.getElementById('descricao').value = produto.descricao;
+                document.getElementById('precoCusto').value = produto.precoCusto;
+                document.getElementById('precoVenda').value = produto.precoVenda;
+                document.getElementById('promocao').value = produto.promocao.toString();
+                document.getElementById('valorPromocao').value = produto.valorPromocao;
+                
+                document.getElementById('tituloForm').textContent = 'Editar Produto';
+                document.getElementById('btnSalvar').textContent = 'Atualizar Produto';
+                document.getElementById('btnCancelar').style.display = 'inline-block';
+                
+                togglePromocao();
+                mostrarTab('cadastro');
+            }
+        }
+
+        // Excluir produto
+        function excluirProduto(id) {
+            if (confirm('Tem certeza que deseja excluir este produto?')) {
+                produtos = produtos.filter(p => p.id !== id);
+                carregarProdutos();
+                alert('Produto excluído com sucesso!');
+            }
+        }
+
+        // Limpar formulário
+        function limparFormulario() {
+            document.getElementById('formProduto').reset();
+            document.getElementById('produtoId').value = '';
+            document.getElementById('tituloForm').textContent = 'Cadastrar Produto';
+            document.getElementById('btnSalvar').textContent = 'Cadastrar Produto';
+            document.getElementById('btnCancelar').style.display = 'none';
+            document.getElementById('grupoValorPromocao').style.display = 'none';
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar evento de tecla Enter no login
+            document.getElementById('senha').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    fazerLogin();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
