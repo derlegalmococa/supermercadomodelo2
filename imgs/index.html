@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supermercado Verde</title>
+<style>
+  :root {
+    --verde-claro: #a8e6a3;
+    --verde-escuro: #2e7d32;
+    --branco: #fff;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Arial", "Segoe UI", sans-serif;
+    background-color: #f7fff7;
+    color: #333;
+    padding-top: 150px; /* altura da navbar */
+  }
+
+  header {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-align: left;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+/* ===== NAVBAR ===== */
+  nav {
+    background-color: #0d4410;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  nav h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #a5d6a7;
+  }
+
+  /* Banner */
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background-image: url("super.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mensagens-banner {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+    animation: fade 1s ease-in-out;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section {
+    padding: 2rem;
+  }
+
+  h2 {
+    color: var(--verde-escuro);
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--verde-escuro);
+    padding-left: 10px;
+    
+  }
+
+  /* Cards de produtos */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--branco);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h3 {
+    color: var(--verde-escuro);
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+
+  .card p {
+    font-weight: bold;
+    color: #444;
+  }
+
+  /* Formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  input, textarea, button {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  button {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #1b5e20;
+  }
+
+  footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  .flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+</head>
+<body> <nav>
+  <img src="logo2.png" width="150px" height="auto">
+  <ul>
+    <li><a href="ofertas.html">Promoções</a></li>
+    <li><a href="#folheto">Açougue</a></li>
+    <li><a href="#entrar">Mercearia</a></li>
+    <li><a href="#entrar">Bebidas</a></li>
+    <li><a href="#entrar">HortiFruti</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+  <div class="banner">
+    <div id="mensagem" class="mensagens-banner">Bem-vindo ao Supermercado Verde!</div>
+  </div>
+
+  <section>
+    <h2>Promoções da Semana</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="arroz.jpg" alt="Arroz">
+        <h3>Arroz Branco Tipo 1 - 5kg</h3>
+        <p>R$ 24,90</p>
+      </div>
+      <div class="card">
+        <img src="carioca.jpg" alt="Feijão">
+        <h3>Feijão Carioca 1kg</h3>
+        <p>R$ 8,99</p>
+      </div>
+      <div class="card">
+        <img src="leite.jpg" alt="Leite">
+        <h3>Leite Integral Jussara 1L</h3>
+        <p>R$ 4,79</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hortifruti</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="tomate.jpg" alt="Tomate">
+        <h3>Tomate Italiano</h3>
+        <p>R$ 5,49/kg</p>
+      </div>
+      <div class="card">
+        <img src="banana" alt="Banana">
+        <h3>Banana Nanica</h3>
+        <p>R$ 3,29/kg</p>
+      </div>
+      <div class="card">
+        <img src="alface" alt="Alface">
+        <h3>Alface Crespa</h3>
+        <p>R$ 2,49/un</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Bebidas</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="refri.jpg" alt="Refrigerante">
+        <h3>Refrigerante Cola 2L</h3>
+        <p>R$ 6,99</p>
+      </div>
+      <div class="card">
+        <img src="suco.jpg" alt="Suco Natural">
+        <h3>Suco Natural 1L</h3>
+        <p>R$ 7,49</p>
+      </div>
+      <div class="card">
+        <img src="agua" alt="Água Mineral">
+        <h3>Água Mineral 500ml</h3>
+        <p>R$ 2,00</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fale Conosco</h2>
+    <form id="contato">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <textarea rows="4" placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer class="flex-container">
+    <img src="logo2.png" width="256px" height="auto">
+    <p align=justify >
+      Rua Capitão José Joaquim, 100 - Mocoquinha - Mococa S.P.<br>
+      © 2025 Supermercado Verde - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const mensagens = [
+      "Ofertas fresquinhas todos os dias!",
+      "Compre com qualidade e economia!",
+      "Produtos selecionados para sua família!",
+      "Aproveite nossas promoções da semana!"
+    ];
+    let index = 0;
+
+    setInterval(() => {
+      const msgEl = document.getElementById('mensagem');
+      msgEl.style.opacity = 0;
+      setTimeout(() => {
+        index = (index + 1) % mensagens.length;
+        msgEl.textContent = mensagens[index];
+        msgEl.style.opacity = 1;
+      }, 500);
+    }, 4000);
+  </script>
+</body>
+</html>

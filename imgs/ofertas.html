@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofertas - Supermercado Olívio</title>
+<style>
+  :root {
+    --verde-escuro: #2e7d32;
+    --verde-claro: #a8e6a3;
+    --branco: #fff;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f7fff7;
+    color: #333;
+  }
+
+  header {
+    background-color: var(--branco);
+    color: var(--branco);
+    text-align: left;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  nav {
+    background-color: #388e3c;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.8rem;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    color: var(--verde-claro);
+  }
+
+  .banner {
+    width: 100%;
+    height: 300px;
+    background-image: url("1.jpeg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+  }
+
+  .banner h1 {
+    position: relative;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    text-align: center;
+    max-width: 80%;
+  }
+
+  section {
+    padding: 2rem;
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--verde-escuro);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+
+  .ofertas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+  }
+
+  .oferta {
+    background-color: var(--branco);
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+    max-width: 400px;
+  }
+
+  .oferta:hover {
+    transform: translateY(-5px);
+  }
+
+  .oferta img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  header {
+     align-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .banner h1 {
+      font-size: 1.6rem;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+  <header><img src="logo.png" width="256px" height="auto"></header>
+
+  <nav>
+    <a href="index.html">Promoções</a>
+    <a href="ofertas.html">Folheto</a>
+    <a href="#">Entrar</a>
+    <a href="index.html#contato">Contato</a>
+  </nav>
+
+  <div class="banner">
+    <h1>💚 Aproveite as melhores ofertas da Terça do Produtor! 💚</h1>
+  </div>
+
+  <section>
+    <h2>Ofertas da Semana</h2>
+    <div class="ofertas">
+      <div class="oferta"><img src="2.jpeg" alt="Ofertas 1 - Supermercado Olívio"></div>
+      <div class="oferta"><img src="3.jpeg" alt="Ofertas 2 - Supermercado Olívio"></div>
+      <div class="oferta"><img src="4.jpeg" alt="Ofertas 3 - Supermercado Olívio"></div>
+      <div class="oferta"><img src="5.jpeg" alt="Ofertas 4 - Supermercado Olívio"></div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Supermercado Olívio - Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
