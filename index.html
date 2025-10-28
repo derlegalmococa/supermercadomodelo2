@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supermercado Olívio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="#"><img src="imgs/logosmall.png"></a>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Categorias</a></li>
+          <li><a href="register.html">Entrar</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar produtos..." />
+        <button id="searchBtn">🔍</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="banner-section">
+      <div class="banner-container">
+        <div class="banner-slide active">
+          <img src="imgs/b1.png" width="1200px" height="400px" alt="Promoção 1" />
+        </div>
+        <div class="banner-slide">
+          <img src="imgs/b2.png" alt="Promoção 2" />
+        </div>
+        <div class="banner-slide">
+          <img src="imgs/b3.png" alt="Promoção 3" />
+        </div>
+        <button class="banner-prev">‹</button>
+        <button class="banner-next">›</button>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="container">
+        <h2>Categorias</h2>
+        <div class="categories-grid">
+          <div class="category-card">Hortifruti</div>
+          <div class="category-card">Alimentos</div>
+          <div class="category-card">Limpeza</div>
+          <div class="category-card">Bebidas</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-products-section">
+      <div class="container">
+        <h2>Produtos em destaque</h2>
+        <div class="products-grid">
+          <!-- Exemplo de card de produto -->
+          <div class="product-card">
+            <img src="imgs/leite.jpg" alt="Produto 1" />
+            <h3>Leite Integral 1L</h3>
+            <p>R$ 4,79</p>
+            <button class="btn-add">Adicionar</button>
+          </div>
+          <div class="product-card">
+            <img src="imgs/arroz.jpg" alt="Produto 2" />
+            <h3>Arroz 5Kg</h3>
+            <p>R$ 12,50</p>
+            <button class="btn-add">Adicionar</button>
+          </div>
+          <div class="product-card">
+            <img src="imgs/suco.jpg"Produto 3" />
+            <h3>Suco 1L</h3>
+            <p>R$ 8,75</p>
+            <button class="btn-add">Adicionar</button>
+          </div>
+          <div class="product-card">
+            <img src="imgs/tomate.jpg" alt="Produto 4" />
+            <h3>Tomate Kg</h3>
+            <p>R$ 5,99</p>
+            <button class="btn-add">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <h4>Supermercado Olívio</h4>
+        <p>Rua Cap. José Joaquim, 100, Mococa – S.P.</p>
+        <p>Email: contato@olivio.com.br | Telefone: (00) 0000-0000</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Ajuda</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
